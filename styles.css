@@ -437,10 +437,6 @@ footer .footer-address {
   margin-bottom: 10px;
 }
 
-.contract-item {
-  cursor: pointer;
-}
-
 .modal {
   display: none;
   position: fixed;
@@ -556,8 +552,11 @@ footer .footer-address {
   border-radius: 10px;
   padding: 0px;
   margin: 10px;
-  cursor: pointer;
   position: relative;
+}
+.contract-item h2 {
+  cursor: pointer;
+  font-size: 1.1rem;
 }
 
 .contract-item:hover {
