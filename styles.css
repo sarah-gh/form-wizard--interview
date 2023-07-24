@@ -27,8 +27,13 @@ main {
   min-height: 76vh;
   text-align: right;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+}
+main h2 {
+  font-size: 1.2rem;
 }
 
 .form-wizard {

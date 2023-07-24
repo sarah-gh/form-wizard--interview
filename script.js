@@ -82,11 +82,16 @@ async function getAllContracts() {
         displayContracts();
     } catch (error) {
         console.error('Error:', error);
+        displayContracts();
     }
 }
 
 function displayContracts() {
+    console.log('displayContracts');
     contractListElement.innerHTML = '';
+    if(contracts.length == 0) {
+        contractListElement.textContent = 'بک اند اجرا نشده است';
+    }
     contracts.forEach((contract) => {
         const contractItem = document.createElement('div');
         contractItem.className = 'contract-item';
