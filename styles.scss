@@ -203,8 +203,17 @@ button {
   }
 }
 
+
+.stage-half-line {
+    flex: 0.5;
+}
+.stage-line {
+    flex: 1;
+}
+.stage-half-line.blue-line {
+    background-color: $stage-blue;
+}
 .stage-half-line, .stage-line {
-  flex: 1;
   height: 2px;
   background-color: #ccc;
   margin: 0;

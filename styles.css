@@ -177,8 +177,19 @@ button:first-child {
   color: #007bff;
 }
 
-.stage-half-line, .stage-line {
+.stage-half-line {
+  flex: 0.5;
+}
+
+.stage-line {
   flex: 1;
+}
+
+.stage-half-line.blue-line {
+  background-color: #007bff;
+}
+
+.stage-half-line, .stage-line {
   height: 2px;
   background-color: #ccc;
   margin: 0;
