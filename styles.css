@@ -27,10 +27,11 @@ main {
 }
 main h2 {
   font-size: 1.2rem;
+  padding: 0 16px;
 }
 
 .form-wizard {
-  max-width: 500px;
+  max-width: 600px;
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -41,6 +42,12 @@ main h2 {
   height: fit-content;
 }
 
+@media screen and (max-width: 768px) {
+  .form-wizard {
+    max-width: 600px;
+    width: 80%;
+  }
+}
 .step {
   display: none;
 }
