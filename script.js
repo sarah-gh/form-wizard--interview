@@ -24,7 +24,6 @@ function prevStep() {
 }
 
 function submitForm() {
-    // You can perform form submission or any other action here
     alert('Form submitted successfully!');
 }
 
@@ -58,7 +57,6 @@ function updateStageDisplay(step) {
     }
 }
 
-// Display the first step by default
 showStep(currentStep);
 
 const hamburger = document.querySelector('.hamburger');
@@ -81,20 +79,9 @@ overlay.addEventListener('click', () => {
 
 
 const contractListElement = document.getElementById('contractList');
-// const modalElement = document.getElementById('modal');
-// const modalContentElement = document.getElementById('modalContent');
 
 let contracts = [];
 
-
-// function displayModal(content) {
-//     modalContentElement.textContent = content;
-//     modalElement.style.display = 'block';
-// }
-
-// function closeModal() {
-//     modalElement.style.display = 'none';
-// }
 
 // درخواست GET برای دریافت تمام لیست قراردادها
 async function getAllContracts() {
@@ -107,52 +94,6 @@ async function getAllContracts() {
         console.error('Error:', error);
     }
 }
-
-
-// نمایش لیست متن‌های قرارداد
-// function displayContracts() {
-//     contractListElement.innerHTML = '';
-//     contracts.forEach((contract) => {
-//         const contractItem = document.createElement('div');
-//         contractItem.className = 'contract-item';
-//         contractItem.textContent = contract.text;
-//         contractItem.onclick = () => displayModal(contract.text);
-//         contractListElement.appendChild(contractItem);
-//     });
-//     addDeleteEvents()
-// }
-
-// function displayContracts() {
-//     contractListElement.innerHTML = '';
-//     contracts.forEach((contract) => {
-//         const contractItem = document.createElement('div');
-//         contractItem.className = 'contract-item';
-
-//         const contractText = document.createElement('p');
-//         contractText.textContent = contract.text;
-
-//         const deleteButton = document.createElement('button');
-//         deleteButton.textContent = 'حذف';
-//         deleteButton.className = 'delete-button';
-//         deleteButton.dataset.id = contract.id;
-
-//         // افزودن رویداد حذف به دکمه حذف
-//         deleteButton.addEventListener('click', function (e) {
-//             e.stopPropagation();
-//             const contractId = parseInt(e.target.dataset.id);
-//             deleteContract(contractId);
-//         });
-
-//         contractItem.appendChild(contractText);
-//         contractItem.appendChild(deleteButton);
-
-//         // افزودن رویداد نمایش متن قرارداد به هر آیتم
-//         contractItem.onclick = () => displayModal(contract.text);
-
-//         contractListElement.appendChild(contractItem);
-//     });
-//     addDeleteEvents()
-// }
 
 function displayContracts() {
     contractListElement.innerHTML = '';

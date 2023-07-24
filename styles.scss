@@ -22,12 +22,15 @@ body {
     button {
         font-family: 'Vazir', Arial, sans-serif;
     }
+    *::placeholder {
+        font-family: 'Vazir', Arial, sans-serif;
+    }
 }
 
 /* Main Content */
 main {
-    margin: 40px 0;
-    min-height: 70vh;
+    margin: 30px 0;
+    min-height: 76vh;
     text-align: right;
     display: flex;
     flex-wrap: wrap;
@@ -37,7 +40,7 @@ main {
 .form-wizard {
     max-width: $form-wizard-max-width;
     width: 100%;
-    padding: 20px;
+    padding: 12px;
     border: 1px solid $form-wizard-border-color;
     border-radius: $form-wizard-border-radius;
     background-color: #fff;
@@ -62,12 +65,13 @@ main {
 .step-heading-button {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 10px;
 
     button.add {
         background-color: #deb100;
         padding: 3px 20px;
-        height: 50px;
+        height: 40px;
     }
 }
 
@@ -95,7 +99,7 @@ main {
 }
 
 button {
-    padding: 10px 20px;
+    padding: 7px 20px;
     font-size: 16px;
     background-color: $form-wizard-action-bg;
     color: $form-wizard-action-color;
@@ -274,9 +278,13 @@ header {
 
     .logo {
         margin-left: 20px;
-
+        height: fit-content;
+        padding: 0;
+        display: flex;
         img {
             width: 100px;
+            margin: 0;
+            padding: 0;
         }
     }
 
@@ -415,9 +423,12 @@ footer {
 
             .footer-desktop-item,
             .footer-mobile-item {
+                text-decoration: none;
+                color: #000;
+                font-weight: bold;
                 display: flex;
                 align-items: center;
-
+                cursor: pointer;
                 i {
                     margin-right: 5px;
                 }
@@ -452,7 +463,20 @@ footer {
 
             .footer-desktop {
                 display: flex;
-                flex-direction: column;
+                gap: 30px;
+                .footer-desktop-item {
+                    text-decoration: none;
+                    color: #000;
+                    font-weight: bold;
+                    cursor: pointer;
+                    transition: .3s ease all;
+                    i {
+                        margin-left: 7px;
+                    }
+                    &:hover {
+                        color: #2b26ae;
+                    }
+                }
             }
 
             .footer-mobile {
@@ -468,7 +492,7 @@ footer {
 }
 
 .contract-list {
-    max-height: 300px;
+    max-height: 250px;
     overflow-y: auto;
     border: 1px solid #ccc;
     padding: 10px;
@@ -584,8 +608,6 @@ footer {
     text-decoration: none;
     cursor: pointer;
 }
-
-/* CSS */
 
 .header-item {
     display: flex;

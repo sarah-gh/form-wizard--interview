@@ -14,11 +14,17 @@ body {
 body button {
   font-family: "Vazir", Arial, sans-serif;
 }
+body *::-moz-placeholder {
+  font-family: "Vazir", Arial, sans-serif;
+}
+body *::placeholder {
+  font-family: "Vazir", Arial, sans-serif;
+}
 
 /* Main Content */
 main {
-  margin: 40px 0;
-  min-height: 70vh;
+  margin: 30px 0;
+  min-height: 76vh;
   text-align: right;
   display: flex;
   flex-wrap: wrap;
@@ -28,7 +34,7 @@ main {
 .form-wizard {
   max-width: 500px;
   width: 100%;
-  padding: 20px;
+  padding: 12px;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #fff;
@@ -54,12 +60,13 @@ main {
 .step-heading-button {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 10px;
 }
 .step-heading-button button.add {
   background-color: #deb100;
   padding: 3px 20px;
-  height: 50px;
+  height: 40px;
 }
 
 .form-group {
@@ -86,7 +93,7 @@ main {
 }
 
 button {
-  padding: 10px 20px;
+  padding: 7px 20px;
   font-size: 16px;
   background-color: #007bff;
   color: #fff;
@@ -246,9 +253,15 @@ header {
 }
 header .logo {
   margin-left: 20px;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 0;
+  display: flex;
 }
 header .logo img {
   width: 100px;
+  margin: 0;
+  padding: 0;
 }
 header .header-links {
   display: flex;
@@ -362,8 +375,12 @@ footer .footer-content .footer-mobile {
 }
 footer .footer-content .footer-mobile .footer-desktop-item,
 footer .footer-content .footer-mobile .footer-mobile-item {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 footer .footer-content .footer-mobile .footer-desktop-item i,
 footer .footer-content .footer-mobile .footer-mobile-item i {
@@ -390,7 +407,20 @@ footer .footer-address {
   }
   footer .footer-content .footer-desktop {
     display: flex;
-    flex-direction: column;
+    gap: 30px;
+  }
+  footer .footer-content .footer-desktop .footer-desktop-item {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease all;
+  }
+  footer .footer-content .footer-desktop .footer-desktop-item i {
+    margin-left: 7px;
+  }
+  footer .footer-content .footer-desktop .footer-desktop-item:hover {
+    color: #2b26ae;
   }
   footer .footer-content .footer-mobile {
     display: none;
@@ -400,7 +430,7 @@ footer .footer-address {
   }
 }
 .contract-list {
-  max-height: 300px;
+  max-height: 250px;
   overflow-y: auto;
   border: 1px solid #ccc;
   padding: 10px;
@@ -512,7 +542,6 @@ footer .footer-address {
   cursor: pointer;
 }
 
-/* CSS */
 .header-item {
   display: flex;
   align-items: center;
