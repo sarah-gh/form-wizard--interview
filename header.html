@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <title>Responsive Header with Hamburger Menu</title>
+  
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+    }
+
+    .logo {
+      margin-left: 20px;
+    }
+
+    .header-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-links li {
+      list-style: none;
+      margin-left: 20px;
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      margin-right: 20px;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: 250px;
+      background-color: #444;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+      z-index: 999;
+    }
+
+    .menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      color: #fff; /* Set the text color to white */
+    }
+
+    .menu li {
+      padding: 10px;
+    }
+
+    /* Media query for mobile devices */
+    @media screen and (max-width: 768px) {
+      .header-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .menu {
+        display: none;
+        width: 100%; /* Full width */
+        text-align: center; /* Center align the menu items */
+      }
+
+      .menu li {
+        border-bottom: 1px solid #666;
+      }
+
+      .menu li:last-child {
+        border-bottom: none;
+      }
+
+      .menu.active {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .sidebar.active {
+        transform: translateX(0);
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: none;
+        z-index: 998; /* Lower z-index than the sidebar */
+      }
+      .overlay.active {
+        display: block;
+      }
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      
+      .page-content {
+        flex: 1;
+      }
+      
+      footer {
+        background-color: #f2f2f2;
+        padding: 20px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      
+      .footer-content {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .footer-desktop {
+        display: none;
+      }
+      
+      .footer-mobile {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      
+      .footer-desktop-item,
+      .footer-mobile-item {
+        display: flex;
+        align-items: center;
+      }
+      
+      .footer-desktop-item i,
+      .footer-mobile-item i {
+        margin-right: 5px;
+      }
+      
+      .footer-address {
+        text-align: center;
+      }
+      
+      /* Media query for desktop mode */
+      @media only screen and (min-width: 768px) {
+        .footer-desktop {
+          display: flex;
+          flex-direction: column;
+        }
+      
+        .footer-mobile {
+          display: none;
+        }
+      
+        .footer-address {
+          text-align: left;
+        }
+      }
+      
+      
+      
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Your Logo</div>
+    <ul class="header-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="hamburger">&#9776;</div>
+  </header>
+  <div class="sidebar">
+    <ul class="menu">
+      <li>Home</li>
+      <li>About</li>
+      <li>Contact</li>
+    </ul>
+  </div>
+  <div class="overlay"></div>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-desktop">
+        <div class="footer-desktop-item"><i class="fas fa-home"></i> Home</div>
+        <div class="footer-desktop-item"><i class="fas fa-cog"></i> Service</div>
+        <div class="footer-desktop-item"><i class="fas fa-comment-alt"></i> Chat</div>
+        <div class="footer-desktop-item"><i class="fas fa-lightbulb"></i> Light</div>
+        <div class="footer-desktop-item"><i class="fas fa-sliders-h"></i> Panel</div>
+      </div>
+      <div class="footer-mobile">
+        <div class="footer-mobile-item">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </div>
+        <div class="footer-mobile-item">
+          <i class="fas fa-cog"></i>
+          <span>Service</span>
+        </div>
+        <div class="footer-mobile-item">
+          <i class="fas fa-comment-alt"></i>
+          <span>Chat</span>
+        </div>
+        <div class="footer-mobile-item">
+          <i class="fas fa-lightbulb"></i>
+          <span>Light</span>
+        </div>
+        <div class="footer-mobile-item">
+          <i class="fas fa-sliders-h"></i>
+          <span>Panel</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-address">Your Company Address</div>
+  </footer>
+  
+  
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const menu = document.querySelector('.menu');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.overlay');
+
+    hamburger.addEventListener('click', () => {
+      menu.classList.toggle('active');
+      sidebar.classList.toggle('active');
+      overlay.classList.toggle('active');
+    });
+
+    overlay.addEventListener('click', () => {
+      menu.classList.remove('active');
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
+    });
+  </script>
+</body>
+</html>

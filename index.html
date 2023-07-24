@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فرم ویزارد</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vazir-font@20.1.0/dist/font-face.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="https://vakilbashi.org/img/home/logo.png" />
+    </div>
+    <ul class="header-links">
+      <li><a href="#">خانه</a></li>
+      <li><a href="#">درباره ما</a></li>
+      <li><a href="#">تماس</a></li>
+    </ul>
+    <div class="hamburger">&#9776;</div>
+  </header>
+  <div class="sidebar">
+    <ul class="menu">
+      <li>خانه</li>
+      <li>درباره ما</li>
+      <li>تماس</li>
+    </ul>
+  </div>
+  <div class="overlay"></div>
+  <main>
+    <div class="form-wizard">
+      <div class="stage-display">
+        <div class="stage-half-line blue-line"></div>
+        <div class="stage-circle completed" data-stage="آماده‌سازی قرارداد"></div>
+        <div class="stage-line"></div>
+        <div class="stage-circle in-progress" data-stage="متن قرارداد"></div>
+        <div class="stage-line"></div>
+        <div class="stage-circle not-completed" data-stage="تایید هویت"></div>
+        <div class="stage-half-line"></div>
+      </div>
+      <div class="step active" id="step1">
+        <h2 class="step-heading">مرحله 1: آماده‌سازی قرارداد</h2>
+        <div class="form-group">
+          <label for="name">نام:</label>
+          <input type="text" id="name">
+        </div>
+        <div class="form-group">
+          <label for="email">ایمیل:</label>
+          <input type="email" id="email">
+        </div>
+        <div class="actions">
+          <button onclick="nextStep()">بعدی</button>
+        </div>
+      </div>
+      <div class="step" id="step2">
+        <h2 class="step-heading">اطلاعات و بندهای قرارداد</h2>
+        <div class="step-heading-button">
+          <p>
+            تعهدات طرفین
+          </p>
+          <button onclick="openModal()" class="add">افزودن بند جدید</button>
+
+        </div>
+        <div class="contract-list" id="contractList"></div>
+        <div class="actions">
+          <button onclick="nextStep()">بعدی</button>
+          <button onclick="prevStep()">قبلی</button>
+        </div>
+      </div>
+      <div class="step" id="step3">
+        <h2 class="step-heading">مرحله 3: تایید هویت</h2>
+        <div class="form-group">
+          <label for="phone">تلفن:</label>
+          <input type="text" id="phone">
+        </div>
+        <div class="form-group">
+          <label for="dob">تاریخ تولد:</label>
+          <input type="date" id="dob">
+        </div>
+        <div class="actions">
+          <button onclick="submitForm()">ثبت</button>
+          <button onclick="prevStep()">قبلی</button>
+        </div>
+      </div>
+    </div>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p id="modalContent"></p>
+      </div>
+    </div>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <form id="addContractForm">
+          <input type="checkbox" id="mandatoryCheckbox">
+          <label for="mandatoryCheckbox">اجباری</label>
+          <br>
+          <input type="text" id="contractHeader" placeholder="هدر قرارداد" required>
+          <textarea id="contractText" placeholder="متن قرارداد" required></textarea>
+          <button type="submit">اضافه کردن قرارداد</button>
+        </form>
+      </div>
+    </div>    
+  </main>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-desktop">
+        <div class="footer-desktop-item"><i class="fas fa-home"></i> خانه</div>
+        <div class="footer-desktop-item"><i class="fas fa-cog"></i> خدمات</div>
+        <div class="footer-desktop-item"><i class="fas fa-comment-alt"></i> گفت‌و‌گو</div>
+        <div class="footer-desktop-item"><i class="fas fa-lightbulb"></i> نور</div>
+        <div class="footer-desktop-item"><i class="fas fa-sliders-h"></i> پنل</div>
+      </div>
+      <div class="footer-mobile">
+        <div class="footer-mobile-item">
+          <i class="fas fa-home"></i>
+          <span>خانه</span>
+        </div>
+        <div class="footer-mobile-item">
+          <i class="fas fa-cog"></i>
+          <span>خدمات</span>
+        </div>
+        <div class="footer-mobile-item">
+          <i class="fas fa-comment-alt"></i>
+          <span>گفت‌و‌گو</span>
+        </div>
+        <div class="footer-mobile-item">
+          <i class="fas fa-lightbulb"></i>
+          <span>نور</span>
+        </div>
+        <div class="footer-mobile-item">
+          <i class="fas fa-sliders-h"></i>
+          <span>پنل</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-address">آدرس شرکت شما</div>
+  </footer>
+  
+
+  <script src="script.js"></script>
+</body>
+</html>
