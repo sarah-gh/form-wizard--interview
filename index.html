@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="fa">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>فرم ویزارد</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vazir-font@20.1.0/dist/font-face.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <header>
     <div class="logo">
@@ -30,35 +35,237 @@
   <div class="overlay"></div>
   <main>
     <h2>
-      پروژه را با 
-      node app.js 
+      پروژه را با
+      node app.js
       اجرا کرده تا لیست نمایش داده شود
     </h2>
     <div class="form-wizard">
       <div class="stage-display">
         <div class="stage-half-line blue-line"></div>
-        <div class="stage-circle completed" data-stage="آماده‌سازی قرارداد"></div>
+        <div class="stage-circle completed" data-id="1" data-stage="آماده‌سازی قرارداد"></div>
         <div class="stage-line"></div>
-        <div class="stage-circle in-progress" data-stage="متن قرارداد"></div>
+        <div class="stage-circle in-progress" data-id="2" data-stage="متن قرارداد"></div>
         <div class="stage-line"></div>
-        <div class="stage-circle not-completed" data-stage="تایید هویت"></div>
+        <div class="stage-circle not-completed" data-id="3" data-stage="تایید هویت"></div>
         <div class="stage-half-line"></div>
       </div>
       <div class="step active" id="step1">
-        <h2 class="step-heading">مرحله 1: آماده‌سازی قرارداد</h2>
-        <div class="form-group">
-          <label for="name">نام:</label>
-          <input type="text" id="name">
+        <div class="d-flex justify-content-center h-100 w-100 step-counter-container">
+          <div class="step-counter">
+            <div class="circle circleTop">1</div>
+            <div class="line-right"></div>
+            <div class="circle circleBottom">2</div>
+          </div>
+          <div class="d-flex flex-column align-items-start step-wrapper">
+            <p class="title margin-title">
+              اطلاعات مستاجر را وارد کنید.
+            </p>
+
+            <!-- Name -->
+            <div class="element-wrapper">
+              <label class="frm-label">نام و نام خانوادگی</label>
+              <input asp-for="FullNameTenant" id="FullNameTenant-frm" class="form-control frm-input-text" type="text"
+                autocomplete="off" onchange="changeValueFrm('FullNameTenant')">
+            </div>
+            <!-- NationalCode -->
+            <div class="element-wrapper">
+              <label class="frm-label">کد ملی</label>
+              <input asp-for="NationalCodeTenant" id="NationalCodeTenant-frm" class="form-control frm-input-text ltr"
+                type="text" autocomplete="off" onchange="changeValueFrm('NationalCodeTenant')">
+            </div>
+            <!-- MobileNumber -->
+            <div class="element-wrapper">
+              <label class="frm-label">شماره موبایل <span class="xs-thin">(شماره خط با هویت امضا کننده منطبق
+                  باشد.)</span></label>
+              <input asp-for="MobileNumberTenant" id="MobileNumberTenant-frm" class="form-control frm-input-text ltr"
+                placeholder="+98" type="text" onchange="changeValueFrm('MobileNumberTenant')" autocomplete="off">
+            </div>
+            <!-- HomeAddress -->
+            <div class="element-wrapper">
+              <label class="frm-label">آدرس محل سکونت</label>
+              <input asp-for="OwnerAddressTenant" id="OwnerAddressTenant-frm" class="form-control frm-input-text"
+                type="text" autocomplete="off" onchange="changeValueFrm('OwnerAddressTenant')">
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="email">ایمیل:</label>
-          <input type="email" id="email">
+        <div class="actions">
+          <button onclick="nextStep()" class="btn btn-primary">بعدی</button>
+        </div>
+      </div>
+
+      <div class="step" id="step2">
+        <div class="d-flex justify-content-center h-100 w-100">
+          <div class="step-counter">
+            <div class="circleTop">2</div>
+            <div class="line-right"></div>
+            <div class="circleBottom">3</div>
+          </div>
+          <div class="d-flex flex-column align-items-start step-wrapper">
+            <p class="title margin-title">
+              اطلاعات ملک را وارد کنید.
+            </p>
+            <!-- Secondary Subcategory -->
+            <div class="w-100 priority-wrapper">
+              <label class="frm-label">کاربری</label>
+              <select asp-for="PlaceType" id="PlaceType-frm" class="frm-select" onchange="changeValueFrm('PlaceType')">
+                <option value="-1" readonly selected>انتخاب کنید</option>
+                <option value="1">مسکونی</option>
+                <option value="2">تجاری</option>
+                <option value="3">کشاورزی</option>
+              </select>
+
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <!-- Name -->
+              <div class="element-wrapper w-50 p-1">
+                <label class="frm-label">متراژ</label>
+                <input asp-for="Area" id="Area-frm" class="number frm-input-text ltr" placeholder="مترمربع"
+                  onchange="changeValueFrm('Area')" type="text" autocomplete="off">
+
+              </div>
+
+              <!-- NationalCode -->
+              <div class="element-wrapper w-50 p-1">
+                <label class="frm-label">سال ساخت</label>
+                <select asp-for="BuildingYear" id="BuildingYear-frm" class="frm-select"
+                  onchange="changeValueFrm('BuildingYear')">
+                  <option value="-1" readonly selected>انتخاب کنید</option>
+                  @for (var i = 1402; i > 1370; i--)
+                  {
+                  <option value="@i">@i</option>
+                  }
+
+                </select>
+
+              </div>
+            </div>
+            <!-- MobileNumber -->
+            <div class="element-wrapper">
+              <label class="frm-label">پلاک ثبتی<span class="xs-thin">(پرکردن این مورد اختیاری
+                  است)</span></label>
+              <input asp-for="Plaque" id="Plaque-frm" class="frm-input-text" placeholder="اصلی، فرعی، مفروض و مجزا از"
+                type="text" autocomplete="off" onchange="changeValueFrm('Plaque')">
+
+            </div>
+            <!-- HomeAddress -->
+            <div class="element-wrapper">
+              <label class="frm-label">آدرس محل مورد اجاره</label>
+              <input asp-for="PlaceAddress" id="PlaceAddress-frm" class="frm-input-text"
+                onchange="changeValueFrm('PlaceAddress')" placeholder="خیابان، محله، طبقه و واحد" type="text"
+                autocomplete="off">
+
+            </div>
+
+          </div>
         </div>
         <div class="actions">
           <button onclick="nextStep()">بعدی</button>
+          <button onclick="prevStep()">قبلی</button>
         </div>
       </div>
-      <div class="step" id="step2">
+      <div class="step" id="step3">
+        <div class="d-flex justify-content-center h-100 w-100">
+          <div class="step-counter">
+            <div class="circleTop">3</div>
+            <div class="line-right"></div>
+            <div class="circleBottom">4</div>
+          </div>
+          <div class="d-flex flex-column align-items-start step-wrapper">
+            <p class="title margin-title">
+              انشعابات و امکانات را مشخص کنید.
+            </p>
+
+            <div class="d-flex justify-content-between align-items-center">
+              <!-- Name -->
+              <div class="element-wrapper w-50 p-1">
+                <label class="frm-label">آب</label>
+                <select asp-for="Water" id="Water-frm" class="frm-select" onchange="changeValueFrm('Water')">
+                  <option value="-1" readonly selected>انتخاب کنید</option>
+                  <option value="1">دارد</option>
+                  <option value="0">ندارد</option>
+                </select>
+
+              </div>
+              <!-- NationalCode -->
+              <div class="element-wrapper w-50 p-1">
+                <label class="frm-label">برق</label>
+                <select asp-for="Electricity" id="Electricity-frm" class="frm-select"
+                  onchange="changeValueFrm('Electricity')">
+                  <option value="-1" readonly selected>انتخاب کنید</option>
+                  <option value="1">دارد</option>
+                  <option value="0">ندارد</option>
+
+                </select>
+
+              </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <!-- Name -->
+              <div class="element-wrapper w-50 p-1">
+                <label class="frm-label">گاز</label>
+                <select asp-for="Gas" id="Gas-frm" class="frm-select" onchange="changeValueFrm('Gas')">
+                  <option value="-1" readonly selected>انتخاب کنید</option>
+                  <option value="1">دارد</option>
+                  <option value="0">ندارد</option>
+
+                </select>
+
+              </div>
+              <!-- NationalCode -->
+              <div class="element-wrapper w-50 p-1">
+                <label class="frm-label">تلفن</label>
+                <select asp-for="Tel" id="Tel-frm" class="frm-select" onchange="changeValueFrm('Tel')">
+                  <option value="-1" readonly selected>انتخاب کنید</option>
+                  <option value="1">دارد</option>
+                  <option value="0">ندارد</option>
+
+                </select>
+
+              </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <!-- Name -->
+              <div class="element-wrapper w-50 p-1">
+                <label class="frm-label">سرمایش</label>
+                <select asp-for="Cooling" id="Cooling-frm" class="frm-select" onchange="changeValueFrm('Cooling')">
+                  <option value="-1" readonly selected>انتخاب کنید</option>
+                  <option value="1">دارد</option>
+                  <option value="0">ندارد</option>
+
+                </select>
+
+              </div>
+              <!-- NationalCode -->
+              <div class="element-wrapper w-50 p-1">
+                <label class="frm-label">گرمایش</label>
+                <select asp-for="Heating" id="Heating-frm" class="frm-select" onchange="changeValueFrm('Heating')">
+                  <option value="-1" readonly selected>انتخاب کنید</option>
+                  <option value="1">دارد</option>
+                  <option value="0">ندارد</option>
+
+                </select>
+
+              </div>
+            </div>
+
+            <div class="element-wrapper p-1">
+              <label class="frm-label">امکانات</label>
+              <div class="w-100 d-flex justify-content-between align-items-center">
+                <input id="util" class="frm-input-text" type="text" autocomplete="off">
+                <button type="button" class="button-gray" style="width: 90%;" onclick="addUtil()">اضافه کنید</button>
+              </div>
+              <div id="UtilityModel" class="d-none">@Model.Utility</div>
+              <div id="Utilities" class="w-100 d-flex justify-content-between align-items-center flex-wrap">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="actions">
+          <button onclick="nextStep()">بعدی</button>
+          <button onclick="prevStep()">قبلی</button>
+        </div>
+      </div>
+      <div class="step" id="step4">
         <h2 class="step-heading">اطلاعات و بندهای قرارداد</h2>
         <div class="step-heading-button">
           <p>
@@ -73,8 +280,23 @@
           <button onclick="prevStep()">قبلی</button>
         </div>
       </div>
-      <div class="step" id="step3">
-        <h2 class="step-heading">مرحله 3: تایید هویت</h2>
+      <div class="step" id="step5">
+        <h2 class="step-heading">مرحله 5: آماده‌سازی قرارداد</h2>
+        <div class="form-group">
+          <label for="name">نام:</label>
+          <input type="text" id="name">
+        </div>
+        <div class="form-group">
+          <label for="email">ایمیل:</label>
+          <input type="email" id="email">
+        </div>
+        <div class="actions">
+          <button onclick="nextStep()">بعدی</button>
+          <button onclick="prevStep()">قبلی</button>
+        </div>
+      </div>
+      <div class="step" id="step6">
+        <h2 class="step-heading">مرحله 6: تایید هویت</h2>
         <div class="form-group">
           <label for="phone">تلفن:</label>
           <input type="text" id="phone">
@@ -109,14 +331,14 @@
           <button type="submit">اضافه کردن قرارداد</button>
         </form>
       </div>
-    </div>   
+    </div>
     <div class="modal" id="myModal2">
       <div class="modal-content">
         <span class="close" onclick="closeModal2()">&times;</span>
         <br><br>
         <p id="modalText">متن قرارداد کامل اینجا قرار می‌گیرد.</p>
       </div>
-    </div> 
+    </div>
   </main>
   <footer>
     <div class="footer-content">
@@ -152,9 +374,10 @@
     </div>
     <div class="footer-address">آدرس شرکت شما</div>
   </footer>
-  
+
 
   <script src="script.js"></script>
 
 </body>
+
 </html>
